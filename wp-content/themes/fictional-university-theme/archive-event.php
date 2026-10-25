@@ -1,37 +1,24 @@
 <?php
 get_header();
-?>
 
-<div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?= get_theme_file_uri("images/ocean.jpg"); ?>)"></div>
-    <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title">All events</h1>
-            <div class="page-banner__intro">
-                <p>See what is going on in our world</p>
-            </div>
-    </div>
-</div>
+pageBanner([
+  "title" => "All events",
+  "subtitle" => "See what is going on in our world",
+])
+?>
 
 <div class="container container--narrow page-section">
     <?php 
         while(have_posts()) {
-        the_post();
-    ?>
-      <div class="event-summary">
-        <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-          <span class="event-summary__month"><?php the_time("M"); ?></span>
-          <span class="event-summary__day"><?php the_time("d"); ?></span>
-        </a>
-        <div class="event-summary__content">
-          <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?= the_title(); ?></a></h5>
-          <p><?= wp_trim_words(get_the_content(), 18); ?><a href="<?php the_permalink(); ?>" class="nu gray">&nbsp;Learn more</a></p>
-        </div>
-      </div>
-    <?php
+          the_post();
+          get_template_part("template-parts/content-event");
         }
 
         echo paginate_links();
     ?>
+  <hr class="section-break">
+
+  <p>Looking for a recap of past events? <a href="<?= site_url("/past-events") ?>">Check our past events archive</a></p>
 </div>
 
 <?php

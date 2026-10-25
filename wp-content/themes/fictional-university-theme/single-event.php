@@ -2,18 +2,10 @@
     get_header();
 
     while(have_posts()) {
-        the_post(); 
+        the_post();
+        
+        pageBanner();
 ?>
-
-<div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?= get_theme_file_uri("images/ocean.jpg") ?>)"></div>
-    <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title"><?php the_title() ?></h1>
-            <div class="page-banner__intro">
-                <p>DON'T FORGET TO REPLACE ME LATER</p>
-            </div>
-    </div>
-</div>
 
 <div class="container container--narrow page-section">
     <div class="metabox metabox--position-up metabox--with-home-link">
@@ -23,14 +15,28 @@
     <div class="generic-content">
         <?php the_content();?>
     </div>
+    
+    <?php
+        $relatedPrograms = get_field("related_programs");
+
+        if($relatedPrograms) {
+    ?>
+        <hr class="section-break">
+        <h2 class="headline headline--medium">Related program(s)</h2>
+        <ul class="link-list min-list">
+    <?php
+            foreach($relatedPrograms as $relatedProgram) {
+                ?>
+                    <li><a href="<?= get_the_permalink($relatedProgram) ?>"><?= get_the_title($relatedProgram); ?></a></li>
+                <?php
+            }
+        }
+    ?>
+        </ul>
 </div>
 
 
     <?php
     }
-?>
-
-
-<?php
     get_footer();
 ?>
