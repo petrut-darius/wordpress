@@ -17,6 +17,8 @@ function universityPostTypes() {
         ],
         "supports" => ["title", "editor", "excerpt"],
         "show_in_rest" => true,//modern block create or edit view
+        "capability_type" => "event",
+        "map_meta_cap" => true
     ]);
 
     //Program post type
@@ -34,8 +36,10 @@ function universityPostTypes() {
         "rewrite" => [
             "slug" => "programs",
         ],
-        "supports" => ["title", "editor"],
+        "supports" => ["title"],
         "show_in_rest" => true,//modern block create or edit view
+        "capability_type" => "program",
+        "map_meta_cap" => true
     ]);
 
     //Professor post type
@@ -51,6 +55,46 @@ function universityPostTypes() {
         "menu_icon" => "dashicons-welcome-learn-more",
         "supports" => ["title", "editor", "thumbnail"],
         "show_in_rest" => true,//modern block create or edit view
+        "capability_type" => "professor",
+        "map_meta_cap" => true
+    ]);
+
+    //Campus post type
+    register_post_type("campus", [
+        "public" => true,
+        "labels" => [
+            "name" => "Campuses",
+            "add_new_item" => "Add new campus",
+            "edit_item" => "Edit campus",
+            "all_items" => "All campuses",
+            "singular_name" => "Campus",
+        ],
+        "menu_icon" => "dashicons-location-alt",
+        "has_archive" => true,
+        "rewrite" => [
+            "slug" => "campuses",
+        ],
+        "supports" => ["title", "editor", "excerpt"],
+        "show_in_rest" => true,//modern block create or edit view
+        "capability_type" => "campus",
+        "map_meta_cap" => true
+    ]);
+
+
+    //Note post type
+    register_post_type("note", [
+        "public" => false,//private & specific to each user account
+        "labels" => [
+            "name" => "Notes",
+            "add_new_item" => "Add new note",
+            "edit_item" => "Edit note",
+            "all_items" => "All notes",
+            "singular_name" => "Note",
+        ],
+        "menu_icon" => "dashicons-welcome-write-blog",
+        "supports" => ["title", "editor"],
+        "show_in_rest" => true,//modern block create or edit view
+        "show_ui" => true,
     ]);
 }
 

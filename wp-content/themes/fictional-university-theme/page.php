@@ -6,7 +6,7 @@
     the_post(); 
 
     pageBanner([
-              "title" => "Hello there this is the title",
+              "title" => get_the_title() ? get_the_title() : "Hello there this is the title",
               "subtitle" => "Hi this is the subtitle",
               "photo" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrnqTSUK-dLCnZ6O92YfZ1eZKJ1HTWXeXcS17zTngnuQ&s=10",
             ]);
