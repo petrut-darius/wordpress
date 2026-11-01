@@ -34,7 +34,7 @@ function pageBanner(array|null $data = null) {
 }
 
 function universityFiles() {
-    wp_enqueue_script("googleMap", "//maps.googleapis.com/maps/api/js?key=AIzaSyBKdR-7QQzb2LWPYL8ynJGmAQO62LbEy0A", [], "1.0", true);
+    wp_enqueue_script("googleMap", "//maps.googleapis.com/maps/api/js?key=" . GOOGLE_APY_KEY , [], "1.0", true);
     wp_enqueue_script("main-university-js", get_theme_file_uri("/build/index.js"), ["jquery", "googleMap"], "1.0", true);
     wp_enqueue_style("university_main_styles", get_theme_file_uri("/build/style-index.css"));
     //wp_enqueue_style("university_extra_styles", get_theme_file_uri("/build/index.css"));

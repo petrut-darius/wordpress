@@ -100,3 +100,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
+
+
+define( 'GOOGLE_APY_KEY', 'AIzaSyBKdR-7QQzb2LWPYL8ynJGmAQO62LbEy0A' );
