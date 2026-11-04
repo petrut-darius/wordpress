@@ -6,9 +6,9 @@ class MyNotes {
     }
 
     events() {
-        $(".edit-note").on("click", this.editNote.bind(this));
-        $(".delete-note").on("click", this.deleteNote.bind(this));
-        $(".update-note").on("click", this.updateNote.bind(this));
+        $("#my-notes").on("click", ".edit-note", this.editNote.bind(this));
+        $("#my-notes").on("click", ".delete-note" , this.deleteNote.bind(this));
+        $("#my-notes").on("click", ".update-note", this.updateNote.bind(this));
         $(".submit-note").on("click", this.createNote.bind(this));
     }
 
@@ -27,17 +27,19 @@ class MyNotes {
             success: (response) => {
                 $(".new-note-title, .new-note-body").val("");
                 $(`
-                    <li data-id="<?php the_ID(); ?>" data-state="cancel">
-                        <input class="note-title-field" readonly value="<?php echo esc_attr(wp_strip_all_tags(get_the_title())); ?>">
+                    <li data-id="${response.id}" data-state="cancel">
+                        <input class="note-title-field" readonly value="${response.title.raw}">
                         <span class="edit-note"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span>
                         <span class="delete-note"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span>
-                        <textarea class="note-body-field" readonly><?php echo esc_textarea(wp_strip_all_tags(get_the_content())); ?></textarea>
+                        <textarea class="note-body-field" readonly>${response.content.raw}</textarea>
                         <button class="update-note btn btn--blue btn--small" type="submit" aria-hidden="true">Save</button>
                     </li>
                 `).prependTo("#my-notes").hide().slideDown();
             },
-            error: () => {
-                console.log("Sorry");
+            error: (response) => {
+                if(response.responseText === "You have reached your note limit.") {
+                    $(".note-limit-message").addClass("active");
+                }
             },
         })
     }
@@ -99,6 +101,10 @@ class MyNotes {
             method: "DELETE",
             success: (response) => {
                 thisNote.slideUp();
+
+                if(response.userNoteCount < 5) {
+                    $(".note-limit-message").removeClass("active");
+                }
             },
             error: () => {
                 console.log("Sorry");

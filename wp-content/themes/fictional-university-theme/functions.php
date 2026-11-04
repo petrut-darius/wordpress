@@ -1,10 +1,15 @@
 <?php
 
 require get_theme_file_path("/inc/search-route.php");
+require get_theme_file_path("/inc/like-route.php");
 
 function universityCustomRest() {
     register_rest_field("post", "authorName", [
         "get_callback" => fn() => get_the_author(),
+    ]);
+
+    register_rest_field("note", "userNoteCount", [
+        "get_callback" => fn() => count_user_posts(get_current_user_id(), ["note"]),
     ]);
 }
 
@@ -94,7 +99,7 @@ function universityAdjustQueries($query) {
 add_action("pre_get_posts", "universityAdjustQueries");
 
 function universityMapKey($api) {
-    $api["key"] = "AIzaSyBKdR-7QQzb2LWPYL8ynJGmAQO62LbEy0A";
+    $api["key"] = GOOGLE_APY_KEY;
     return $api;
 }
 
@@ -142,3 +147,22 @@ function ourLoginTitle() {
 }
 
 add_filter("login_headertitle", "ourLoginTitle");
+
+function makeNotePrivate($data, $post_array) {
+    if($data["post_type"] === "note") {
+        if(((int) count_user_posts(get_current_user_id(), ["note"])) == 4 && !$post_array["ID"]) {
+            die("You have reached your note limit.");
+        }
+
+        $data["post_title"] = sanitize_text_field($data["post_title"]);
+        $data["post_content"] = sanitize_textarea_field($data["post_content"]);
+    }
+
+    if($data["post_type"] === "note" && $data["post_status"] !== "trash") {
+        $data["post_status"] = "private";
+    }
+
+    return $data;
+}
+
+add_filter("wp_insert_post_data", "makeNotePrivate", 10, 2);

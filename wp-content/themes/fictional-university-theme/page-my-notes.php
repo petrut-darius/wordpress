@@ -22,7 +22,7 @@
             <h2 class="headline headline--medium">Create new note</h2>
             <input class="new-note-title" type="text" placeholder="Title...">
             <textarea class="new-note-body" name="" id="" placeholder="Your new note here..."></textarea>
-            <button class="submit-note" type="submit">Create note</button>
+            <button class="submit-note" type="submit">Create note</button><span class="note-limit-message">You can't have more than 4 notes.</span>
         </div>
 
 
@@ -39,7 +39,7 @@
             ?>
 
             <li data-id="<?php the_ID(); ?>" data-state="cancel">
-                <input class="note-title-field" readonly value="<?php echo esc_attr(wp_strip_all_tags(get_the_title())); ?>">
+                <input class="note-title-field" readonly value="<?php echo str_replace("Private:", "", esc_attr(wp_strip_all_tags(get_the_title()))); ?>">
                 <span class="edit-note"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span>
                 <span class="delete-note"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span>
                 <textarea class="note-body-field" readonly><?php echo esc_textarea(wp_strip_all_tags(get_the_content())); ?></textarea>

@@ -1,14 +1,15 @@
-<div class="event-summary">
-<a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-    <span class="event-summary__month"><?php
-                                        $eventDate = new DateTime(get_field("event_date"));
-                                        echo $eventDate->format("M");
-                                        ?>
-    </span>
-    <span class="event-summary__day"><?php echo $eventDate->format("d"); ?></span>
-</a>
-<div class="event-summary__content">
-    <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?= the_title(); ?></a></h5>
-    <p><?= has_excerpt() ? get_the_excerpt() : wp_trim_words(get_the_content(), 18); ?><a href="<?php the_permalink(); ?>" class="nu gray">&nbsp;Learn more</a></p>
-</div>
+<div class="flex items-start gap-4 mb-5">
+    <a class="no-underline flex flex-col items-center justify-center bg-blue-700 w-[80px] h-[80px] shrink-0 rounded-full leading-tight" href="<?php the_permalink(); ?>">
+        <span class="block text-3xl font-bold text-white uppercase"><?php
+                                            $eventDate = new DateTime(get_field("event_date"));
+                                            echo $eventDate->format("M");
+                                            ?>
+        </span>
+        <span class="block text-2xl font-bold text-white"><?php echo $eventDate->format("d"); ?></span>
+    </a>
+    
+    <div class="block">
+        <h5 class="m-0"><a class="no-underline text-black hover:text-red-500 text-xl font-bold" href="<?php the_permalink(); ?>"><?= the_title(); ?></a></h5>
+        <p class="m-0 text-gray-600"><?= has_excerpt() ? get_the_excerpt() : wp_trim_words(get_the_content(), 18); ?><a href="<?php the_permalink(); ?>" class="text-gray-400 no-underline">&nbsp;Learn more</a></p>
+    </div>
 </div>

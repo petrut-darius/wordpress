@@ -1,19 +1,19 @@
 <?php get_header(); ?>
 
-<div class="page-banner">
-  <div class="page-banner__bg-image" style="background-image: url(<?= get_theme_file_uri("images/library-hero.jpg") ?>)"></div>
-  <div class="page-banner__content container t-center c-white">
-    <h1 class="headline headline--large">Welcome!</h1>
-    <h2 class="headline headline--medium">We think you&rsquo;ll like it here.</h2>
-    <h3 class="headline headline--small">Why don&rsquo;t you check out the <strong>major</strong> you&rsquo;re interested in?</h3>
-    <a href="<?= get_post_type_archive_link("program") ?>" class="btn btn--large btn--blue">Find Your Major</a>
+<div class="bg-black pt-[80px] pb-[40px]">
+  <div class="" style="background-image: url(<?= get_theme_file_uri("images/library-hero.jpg") ?>)"></div>
+  <div class="text-center">
+    <h1 class="text-6xl m-0 text-white">Welcome!</h1>
+    <h2 class="text-4xl m-0 text-white">We think you&rsquo;ll like it here.</h2>
+    <h3 class="text-2xl m-0 text-white">Why don&rsquo;t you check out the <strong>major</strong> you&rsquo;re interested in?</h3>
+    <a href="<?= get_post_type_archive_link("program") ?>" class="block mx-auto w-fit no-underline text-2xl py-2 px-4 bg-white rounded text-black hover:text-4xl hover:py-4 hover:px-6 transition-all">Find Your Major</a>
   </div>
 </div>
 
-<div class="full-width-split group">
-  <div class="full-width-split__one">
-    <div class="full-width-split__inner">
-      <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
+<div class="flex">
+  <div class="w-full">
+    <div class="m-0">
+      <h2>Upcoming Events</h2>
       <?php
         $today = date("Ymd");
 
@@ -44,9 +44,9 @@
       <p class="t-center no-margin"><a href="<?= get_post_type_archive_link("event"); ?>" class="btn btn--blue">View All Events</a></p>
     </div>
   </div>
-  <div class="full-width-split__two">
-    <div class="full-width-split__inner">
-      <h2 class="headline headline--small-plus t-center">From Our Blogs</h2>
+  <div class="w-full">
+    <div class="m-0">
+      <h2 class="">From Our Blog</h2>
       <?php
         $last2Posts = new WP_Query(["posts_per_page" => 2]);
 

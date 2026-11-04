@@ -95,6 +95,27 @@ function universityPostTypes() {
         "supports" => ["title", "editor"],
         "show_in_rest" => true,//modern block create or edit view
         "show_ui" => true,
+        'capability_type' => "note",
+        "map_meta_cap" => true,
+    ]);
+
+    //Like post type
+    register_post_type("like", [
+        "public" => false,
+        "labels" => [
+            "name" => "Likes",
+            "add_new_item" => "Add new like",
+            "edit_item" => "Edit like",
+            "all_items" => "All likes",
+            "singular_name" => "like",
+        ],
+        "menu_icon" => "dashicons-heart",
+        "has_archive" => true,
+        "rewrite" => [
+            "slug" => "likes",
+        ],
+        "supports" => ["title"],
+        "show_ui" => true,
     ]);
 }
 
