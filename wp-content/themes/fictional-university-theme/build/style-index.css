@@ -40,6 +40,11 @@ main {
  * `article` contexts in Chrome, Firefox, and Safari.
  */
 
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
 /* Grouping content
    ========================================================================== */
 
@@ -70,6 +75,10 @@ pre {
 /**
  * Remove the gray background on active links in IE 10.
  */
+
+a {
+  background-color: transparent;
+}
 
 /**
  * 1. Remove the bottom border in Chrome 57-
@@ -356,20 +365,27 @@ img {
   height: auto;
 }
 
+a {
+  color: #0D3B66;
+}
+
 a:hover {
   text-decoration: none;
 }
 
 p,
+ul,
 ol {
   margin: 0 0 1.65em 0;
 }
 
-p {
+p,
+li {
   line-height: 1.65;
 }
 
 .container {
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 16px;
   position: relative;
@@ -574,10 +590,13 @@ p {
   color: #fff;
   position: relative;
   cursor: pointer;
+  top: 1px;
+  margin-left: 20px;
 }
 @media (min-width: 960px) {
   .search-trigger {
     display: inline-block;
+    top: 6px;
   }
 }
 

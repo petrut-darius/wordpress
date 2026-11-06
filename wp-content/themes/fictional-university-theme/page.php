@@ -12,13 +12,18 @@
             ]);
 
 ?>
-    <div class="container container--narrow page-section">
+    <div class="max-w-[960px] mx-auto relative w-full">
     
     <?php
       $theParent = wp_get_post_parent_id(get_the_ID());
       if ($theParent) { ?>
-        <div class="metabox metabox--position-up metabox--with-home-link">
-            <p><a class="metabox__blog-home-link" href="<?= get_permalink($theParent); ?>"><i class="fa fa-home" aria-hidden="true"></i> Back to <?= get_the_title($theParent); ?></a> <span class="metabox__main"><?php the_title(); ?></span></p>
+        <div class="mb-8 inline-flex items-center overflow-hidden rounded text-sm">
+            <div class="absolute">
+                <a href='<?php echo get_permalink($theParent); ?>' class="no-underline text-white bg-black px-4 py-2 rounded-l ">
+                    <i class="fa fa-home" aria-hidden="true"></i>&nbsp;About us
+                </a>
+                <span class="px-4 py-2 rounded-r font-medium bg-gray-500"><?php the_title(); ?></span>
+            </div>
         </div>
       <?php }
     ?>
@@ -28,7 +33,7 @@
 
     if ($theParent or $testArray) { ?>
     <div class="page-links">
-      <h2 class="page-links__title"><a href="<?= get_permalink($theParent); ?>"><?= get_the_title($theParent); ?></a></h2>
+      <h2 class="m-0 text-center pt-[20px] pb-[20px] bg-black"><a class="no-underline text-white" href="<?= get_permalink($theParent); ?>"><?= get_the_title($theParent); ?></a></h2>
       <ul class="min-list">
         <?php
           if ($theParent) {
@@ -37,7 +42,7 @@
             $findChildrenOf = get_the_ID();
           }
 
-          wp_list_pages(['title_li' => NULL, 'child_of' => $findChildrenOf, 'sort_column' => 'menu_order']);
+          wp_list_pages(["walker" => new Wp_About_Us_Walker(), 'title_li' => NULL, 'child_of' => $findChildrenOf, 'sort_column' => 'menu_order']);
         ?>
       </ul>
     </div>

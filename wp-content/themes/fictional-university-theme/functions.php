@@ -1,7 +1,11 @@
+
 <?php
 
 require get_theme_file_path("/inc/search-route.php");
 require get_theme_file_path("/inc/like-route.php");
+
+//custom walker for about-us page
+require get_template_directory() . "/wp-about-us-walker.php";
 
 function universityCustomRest() {
     register_rest_field("post", "authorName", [

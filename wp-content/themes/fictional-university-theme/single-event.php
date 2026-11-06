@@ -7,12 +7,19 @@
         pageBanner();
 ?>
 
-<div class="container container--narrow page-section">
-    <div class="metabox metabox--position-up metabox--with-home-link">
-        <p><a class="metabox__blog-home-link" href="<?= get_post_type_archive_link("event") ?>"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Events home</a> <span class="metabox__main">Posted by <?php the_author_posts_link(); ?> on <?php the_time("F d H:m Y"); ?> in <?= get_the_category_list(", "); ?></span></p>
+<div class="max-w-[960px] mx-auto relative w-full">
+    <div class="mb-8 inline-flex items-center overflow-hidden rounded text-sm">
+        <div class="absolute">
+            <a href='<?php echo get_post_type_archive_link("event"); ?>' class="no-underline text-white bg-black px-4 py-2 rounded-l ">
+                <i class="fa fa-home" aria-hidden="true"></i>&nbsp;Events home
+            </a>
+            <span class="px-4 py-2 rounded-r font-medium bg-gray-500">
+                Posted by <?php echo get_the_author(); ?>
+            </span>
+        </div>
     </div>
 
-    <div class="generic-content">
+    <div class="block">
         <?php the_content();?>
     </div>
     
@@ -23,11 +30,11 @@
     ?>
         <hr class="section-break">
         <h2 class="headline headline--medium">Related program(s)</h2>
-        <ul class="link-list min-list">
+        <ul class="pt-[1rem] pb-[1rem] px-0">
     <?php
             foreach($relatedPrograms as $relatedProgram) {
                 ?>
-                    <li><a href="<?= get_the_permalink($relatedProgram) ?>"><?= get_the_title($relatedProgram); ?></a></li>
+                    <li class="list-none text-2xl my-2"><a class="text-black hover:text-gray-500" href="<?= get_the_permalink($relatedProgram) ?>"><?= get_the_title($relatedProgram); ?></a></li>
                 <?php
             }
         }

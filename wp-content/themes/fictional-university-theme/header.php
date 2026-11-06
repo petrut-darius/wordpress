@@ -31,7 +31,7 @@
             if(is_user_logged_in()) {
           ?>
             <a href="<?php echo esc_url(site_url("/my-notes")); ?>" class="no-underline text-white hover:text-white hover:bg-black hover:px-2 hover:py-1 hover:border hover:border-white hover:rounded-sm hover:cursor-pointer transition-all">My Notes</a>
-            <a href="<?php echo esc_url(wp_logout_url()); ?></a>" class="no-underline text-white hover:text-white hover:bg-black hover:px-2 hover:py-1 hover:border hover:border-white hover:rounded-sm hover:cursor-pointer transition-all">Log Out</a>
+            <a href="<?php echo esc_url(wp_logout_url()); ?></a>" class="no-underline text-white hover:text-white hover:bg-red-500 hover:px-2 hover:py-1 hover:border hover:border-white hover:rounded-sm hover:cursor-pointer transition-all">Log Out</a>
           <?php
             }else{
           ?>

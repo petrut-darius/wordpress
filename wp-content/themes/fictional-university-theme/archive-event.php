@@ -18,7 +18,7 @@ pageBanner([
     ?>
   <hr class="section-break">
 
-  <p>Looking for a recap of past events? <a href="<?= site_url("/past-events") ?>">Check our past events archive</a></p>
+  <p>Looking for a recap of past events? <a class="no-underline text-black hover:text-gray-500" href="<?= site_url("/past-events") ?>">Check our past events archive</a></p>
 </div>
 
 <?php
