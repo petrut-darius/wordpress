@@ -9,6 +9,8 @@
     Domain Path: /languages
 */
 
+if(!defined("ABSPATH")) exit;
+
 class Thepdi_Plugin
 {
     public function __construct()
@@ -43,9 +45,9 @@ class Thepdi_Plugin
         }
 
         if(get_option("thepdi_plugin_location", "0") == "0") {
-            return $html . esc_attr($content);
+            return $html . $content;
         }
-        return esc_attr($content). $html;
+        return $content. $html;
     }
 
     function ifWrap($content) {
